@@ -42,5 +42,14 @@ namespace IyiOlusAdminPanel.Controllers
             return View(contact);
 
         }
+
+        [HttpDelete("{id}")]
+        [Route("Delete/{id}")]
+        public async Task<IActionResult> Delete(Guid id)
+        {
+            var client = _httpClientFactory.CreateClient();
+            var response = await client.DeleteAsync(Constants.ApiRoot + $"Contacts/{id}");
+            return RedirectToAction("Index", "Contact");
+        }
     }
 }

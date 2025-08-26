@@ -282,3 +282,4 @@ C:\Users\ONUR\Desktop\CurrentProjects\IyiOlusAdminPanel\IyiOlusAdminPanel\bin\De
 C:\Users\ONUR\Desktop\CurrentProjects\IyiOlusAdminPanel\IyiOlusAdminPanel\bin\Debug\net9.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
 C:\Users\ONUR\Desktop\CurrentProjects\IyiOlusAdminPanel\IyiOlusAdminPanel\obj\Debug\net9.0\IyiOlusAdminPanel.csproj.AssemblyReference.cache
 C:\Users\ONUR\Desktop\CurrentProjects\IyiOlusAdminPanel\IyiOlusAdminPanel\obj\Debug\net9.0\IyiOlusA.DBFFAD67.Up2Date
+C:\Users\ONUR\Desktop\CurrentProjects\IyiOlusAdminPanel\IyiOlusAdminPanel\obj\Debug\net9.0\IyiOlusAdminPanel.sourcelink.json
