@@ -1,0 +1,61 @@
+﻿@model List<IyiOlusAdminPanel.Models.Contacts.Contact>
+
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    int currentPage = (int)ViewData["CurrentPage"];
+    int totalPages = (int)ViewData["TotalPages"];
+    int count = 0;
+}
+
+<div class="bg-white shadow rounded p-4">
+    <h1 class="text-lg font-semibold mb-4">Sorular</h1>
+
+    <h2 class="text-lg font-semibold mb-4">Profil Tipi: Kariyer</h2>
+    <table class="w-full border-collapse">
+        <thead>
+            <tr class="bg-gray-100 text-left">
+                <th class="p-2 border">#</th>
+                <th class="p-2 border">Konu</th>
+                <th class="p-2 border">Okunma Durumu</th>
+                <th class="p-2 border">Kullanıcı</th>
+                <th class="p-2 border">Detay</th>
+                <th class="p-2 border">Sil</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                count++;
+                <tr>
+                    <td class="p-2 border">@count</td>
+                    <td class="p-2 border">@item.Subject</td>
+                    @if (item.isRead == false)
+                    {
+                        <td class="p-2 border" style="color:red">Okunmadı</td>
+                    }
+                    else
+                    {
+                        <td class="p-2 border" style="color:green">Okundu</td>
+                    }
+
+                    <td class="p-2 border">@item.UserResponse.Name @item.UserResponse.Surname</td>
+                    <td class="p-2 border">
+                        <button onclick="location.href='@Url.Action("Detail","Contact", new { id = item.Id })'"
+                                class="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded">
+                            Detay
+                        </button>
+                    </td>
+                    <td class="p-2 border">
+                        <button onclick="if(confirm('Silmek istediğine emin misin?')) location.href='@Url.Action("Delete","Contact", new { id = item.Id })'"
+                                class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded">
+                            Sil
+                        </button>
+                    </td>
+                </tr>
+
+            }
+        </tbody>
+    </table>
+</div>

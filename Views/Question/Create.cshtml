@@ -1,0 +1,49 @@
+﻿@model IyiOlusAdminPanel.Models.Questions.CreateQuestionDto
+@using IyiOlusAdminPanel.Models.Questions
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="bg-white shadow rounded p-4">
+    <h1 class="text-lg font-semibold mb-4">Soru Ekle</h1>
+
+    <form asp-action="Create" method="post" class="space-y-4">
+        <!-- ProfileQuestion -->
+        <div>
+            <label asp-for="ProfileQuestion" class="block mb-1 font-medium">Soru</label>
+            <input asp-for="ProfileQuestion"
+                   class="w-full border p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
+                   placeholder="Soruyu buraya yazın" />
+            <span asp-validation-for="ProfileQuestion" class="text-red-500 text-sm"></span>
+        </div>
+
+        <!-- QuestionType (Enum seçimi) -->
+        <div>
+            <label asp-for="QuestionType" class="block mb-1 font-medium">Soru Tipi</label>
+            <select asp-for="QuestionType" asp-items="Html.GetEnumSelectList<QuestionTypes>()"
+                    class="w-full border p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-400">
+                <option value="">Seçiniz</option>
+            </select>
+            <span asp-validation-for="QuestionType" class="text-red-500 text-sm"></span>
+        </div>
+
+        <!-- ProfileTypeId (Guid) -->
+        <div>
+            <label asp-for="ProfileTypeId" class="block mb-1 font-medium">Profil Tipi</label>
+            <input asp-for="ProfileTypeId"
+                   class="w-full border p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
+                   placeholder="Profil Tip ID girin" />
+            <span asp-validation-for="ProfileTypeId" class="text-red-500 text-sm"></span>
+        </div>
+
+        <!-- Submit Button -->
+        <div>
+            <button type="submit"
+                    class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded">
+                Kaydet
+            </button>
+        </div>
+    </form>
+</div>

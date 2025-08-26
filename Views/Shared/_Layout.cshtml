@@ -1,0 +1,51 @@
+﻿@{
+    Layout = null;
+    var title = ViewBag.Title ?? "Admin Panel";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@title</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- İsteğe bağlı: kendi CSS dosyan -->
+    <link rel="stylesheet" href="~/Content/site.css" />
+</head>
+<body class="bg-gray-100 flex">
+
+    <!-- Sidebar -->
+    <aside class="w-64 bg-white shadow-md h-screen hidden md:block">
+        <div class="p-4 text-xl font-bold border-b">İyi Oluş Admin</div>
+        <nav class="p-4">
+            <ul class="space-y-2">
+                <li><a href="@Url.Action("Index","Home")" class="block px-2 py-2 rounded hover:bg-gray-200">Ana Sayfa</a></li>
+                <li><a href="@Url.Action("Index","Question")" class="block px-2 py-2 rounded hover:bg-gray-200">Sorular</a></li>
+                <li><a href="@Url.Action("Index","Contact")" class="block px-2 py-2 rounded hover:bg-gray-200">İletişim</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="flex-1 flex flex-col">
+        <!-- Navbar -->
+        <header class="bg-white shadow p-4 flex justify-between items-center">
+            <h1 class="text-lg font-semibold">@ViewBag.Title</h1>
+            <form asp-controller="Account" asp-action="Logout" method="post">
+                <button class="px-3 py-1 bg-red-500 text-white rounded">Çıkış</button>
+            </form>
+        </header>
+
+        <!-- İçerik Alanı -->
+        <main class="p-6 space-y-6">
+            @RenderBody()
+        </main>
+    </div>
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>
