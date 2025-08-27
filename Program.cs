@@ -12,7 +12,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddAuthentication("Cookies")
     .AddCookie("Cookies", options =>
     {
-        options.LoginPath = "/Auth/Login";
+        options.LoginPath = "/Auth/Login/";
     });
 
 builder.Services.AddAuthorization(options =>

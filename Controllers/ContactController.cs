@@ -24,7 +24,7 @@ namespace IyiOlusAdminPanel.Controllers
             var token = Request.Cookies["token"];
             if (string.IsNullOrEmpty(token))
             {
-                return RedirectToAction("Login");
+                return RedirectToAction("Login","Auth");
             }
 
 
@@ -48,7 +48,7 @@ namespace IyiOlusAdminPanel.Controllers
             var token = Request.Cookies["token"];
             if (string.IsNullOrEmpty(token))
             {
-                return RedirectToAction("Login");
+                return RedirectToAction("Login", "Auth");
             }
 
             var client = _httpClientFactory.CreateClient();
@@ -67,7 +67,7 @@ namespace IyiOlusAdminPanel.Controllers
             var token = Request.Cookies["token"];
             if (string.IsNullOrEmpty(token))
             {
-                return RedirectToAction("Login");
+                return RedirectToAction("Login", "Auth");
             }
 
             var client = _httpClientFactory.CreateClient();
