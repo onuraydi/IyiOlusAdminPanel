@@ -1,8 +1,10 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using IyiOlusAdminPanel.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace IyiOlusAdminPanel.Controllers;
+
 
 public class HomeController : Controller
 {

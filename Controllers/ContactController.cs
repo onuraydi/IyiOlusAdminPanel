@@ -1,6 +1,8 @@
 ﻿using IyiOlusAdminPanel.Models.Contacts;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
 
 namespace IyiOlusAdminPanel.Controllers
@@ -19,7 +21,15 @@ namespace IyiOlusAdminPanel.Controllers
         [Route("Index")]
         public async Task<IActionResult> Index(int pageIndex = 0, int pageSize = 20)
         {
+            var token = Request.Cookies["token"];
+            if (string.IsNullOrEmpty(token))
+            {
+                return RedirectToAction("Login");
+            }
+
+
             var client = _httpClientFactory.CreateClient();
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
             var responseString = await client.GetStringAsync(Constants.ApiRoot + $"Contacts?PageSize={pageSize}&PageIndex={pageIndex}");
             var apiResponse = JsonConvert.DeserializeObject<ContactResponse>(responseString);
@@ -35,7 +45,14 @@ namespace IyiOlusAdminPanel.Controllers
         [Route("Detail/{id}")]
         public async Task<IActionResult> Detail(Guid id)
         {
+            var token = Request.Cookies["token"];
+            if (string.IsNullOrEmpty(token))
+            {
+                return RedirectToAction("Login");
+            }
+
             var client = _httpClientFactory.CreateClient();
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
             var response = await client.GetAsync(Constants.ApiRoot + $"Contacts/{id}");
             var contact = await response.Content.ReadFromJsonAsync<Contact>();
 
@@ -47,7 +64,14 @@ namespace IyiOlusAdminPanel.Controllers
         [Route("Delete/{id}")]
         public async Task<IActionResult> Delete(Guid id)
         {
+            var token = Request.Cookies["token"];
+            if (string.IsNullOrEmpty(token))
+            {
+                return RedirectToAction("Login");
+            }
+
             var client = _httpClientFactory.CreateClient();
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
             var response = await client.DeleteAsync(Constants.ApiRoot + $"Contacts/{id}");
             return RedirectToAction("Index", "Contact");
         }
