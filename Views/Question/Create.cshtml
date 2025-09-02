@@ -32,9 +32,11 @@
         <!-- ProfileTypeId (Guid) -->
         <div>
             <label asp-for="ProfileTypeId" class="block mb-1 font-medium">Profil Tipi</label>
-            <input asp-for="ProfileTypeId"
-                   class="w-full border p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
-                   placeholder="Profil Tip ID girin" />
+
+            <select asp-for="ProfileTypeId" asp-items="ViewBag.ProfileTypes"
+                    class="w-full border p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-400">
+                <option value="">Seçiniz</option>
+            </select>
             <span asp-validation-for="ProfileTypeId" class="text-red-500 text-sm"></span>
         </div>
 

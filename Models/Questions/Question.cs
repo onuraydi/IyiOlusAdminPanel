@@ -6,7 +6,7 @@
         public string ProfileQuestion { get; set; } = default!;
         public QuestionTypes QuestionType { get; set; }
         public Guid ProfileTypeId { get; set; }
-        public ProfileType ProfileType { get; set; } = default!;
+        public ProfileTypeResponse ProfileTypeResponse { get; set; } = default!;
 
     }
 }

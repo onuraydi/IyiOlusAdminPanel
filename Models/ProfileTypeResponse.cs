@@ -2,9 +2,9 @@
 
 namespace IyiOlusAdminPanel.Models
 {
-    public class ProfileType
+    public class ProfileTypeResponse
     {
+        public Guid Id { get; set; }
         public ProfileTypes Type { get; set; }
-        public virtual ICollection<Question> Questions { get; set; } = default!;
     }
 }

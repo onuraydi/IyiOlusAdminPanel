@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("IyiOlusAdminPanel")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a3085e564ab4e17ecda8c1172799df560c1027b7")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e5e62b2d8f87e984f22ab971f971b0df2b9b872a")]
 [assembly: System.Reflection.AssemblyProductAttribute("IyiOlusAdminPanel")]
 [assembly: System.Reflection.AssemblyTitleAttribute("IyiOlusAdminPanel")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

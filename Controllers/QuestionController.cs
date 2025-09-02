@@ -1,6 +1,8 @@
-﻿using IyiOlusAdminPanel.Models.Questions;
+﻿using IyiOlusAdminPanel.Models;
+using IyiOlusAdminPanel.Models.Questions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -24,7 +26,7 @@ namespace IyiOlusAdminPanel.Controllers
         [HttpGet]
         [Route("Index")]
         public async Task<IActionResult> Index(int pageIndex = 0, int PageSize = 20)
-        {
+         {
             var token = Request.Cookies["token"];
             if (string.IsNullOrEmpty(token))
             {
@@ -40,6 +42,8 @@ namespace IyiOlusAdminPanel.Controllers
             var apiResponse = JsonConvert.DeserializeObject<QuestionResponse>(responseString);
             var questions = apiResponse.Items;
 
+            
+
             // ViewData ile pagination bilgilerini gönder
             ViewData["CurrentPage"] = apiResponse?.pageNumber ?? 1;
             ViewData["TotalPages"] = apiResponse?.totalPages ?? 1;
@@ -49,9 +53,28 @@ namespace IyiOlusAdminPanel.Controllers
 
         [HttpGet]
         [Route("Create")]
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
+            var token = Request.Cookies["token"];
+            if (string.IsNullOrEmpty(token))
+            {
+                return RedirectToAction("Login", "Auth");
+            }
 
+            var client = _httpClientFactory.CreateClient();
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+            var responseSring = await client.GetStringAsync(Constants.ApiRoot + $"ProfileTypes?PageIndex=0&PageSize=10");
+
+            var apiResponse = JsonConvert.DeserializeObject<ProfileTypeResponseForSelectList>(responseSring);
+            var profileTypes = apiResponse.Items;
+
+            ViewBag.ProfileTypes = profileTypes
+                .Select(x => new SelectListItem
+                {
+                    Value = x.Id.ToString(),
+                    Text = x.Type.ToString(),
+                }).ToList();
             return View();
         }
 
